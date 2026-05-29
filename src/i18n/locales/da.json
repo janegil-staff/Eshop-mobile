@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Produkter",
+    "loading": "Indlæser produkter...",
+    "error": "Kunne ikke indlæse produkter",
+    "retry": "Prøv igen",
+    "empty": "Ingen produkter fundet",
+    "outOfStock": "Udsolgt",
+    "inStock": "På lager",
+    "addToCart": "Læg i kurv",
+    "description": "Beskrivelse",
+    "brand": "Mærke",
+    "reviews": "anmeldelser"
+  }
+}

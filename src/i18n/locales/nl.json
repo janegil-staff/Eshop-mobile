@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Producten",
+    "loading": "Producten laden...",
+    "error": "Kan producten niet laden",
+    "retry": "Opnieuw",
+    "empty": "Geen producten gevonden",
+    "outOfStock": "Uitverkocht",
+    "inStock": "Op voorraad",
+    "addToCart": "In winkelwagen",
+    "description": "Beschrijving",
+    "brand": "Merk",
+    "reviews": "beoordelingen"
+  }
+}

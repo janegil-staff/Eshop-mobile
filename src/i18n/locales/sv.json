@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Produkter",
+    "loading": "Laddar produkter...",
+    "error": "Kunde inte ladda produkter",
+    "retry": "Försök igen",
+    "empty": "Inga produkter hittades",
+    "outOfStock": "Slutsåld",
+    "inStock": "I lager",
+    "addToCart": "Lägg i varukorg",
+    "description": "Beskrivning",
+    "brand": "Märke",
+    "reviews": "recensioner"
+  }
+}

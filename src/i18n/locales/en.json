@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Products",
+    "loading": "Loading products...",
+    "error": "Could not load products",
+    "retry": "Retry",
+    "empty": "No products found",
+    "outOfStock": "Out of stock",
+    "inStock": "In stock",
+    "addToCart": "Add to cart",
+    "description": "Description",
+    "brand": "Brand",
+    "reviews": "reviews"
+  }
+}

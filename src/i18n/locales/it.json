@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Prodotti",
+    "loading": "Caricamento prodotti...",
+    "error": "Impossibile caricare i prodotti",
+    "retry": "Riprova",
+    "empty": "Nessun prodotto trovato",
+    "outOfStock": "Esaurito",
+    "inStock": "Disponibile",
+    "addToCart": "Aggiungi al carrello",
+    "description": "Descrizione",
+    "brand": "Marca",
+    "reviews": "recensioni"
+  }
+}

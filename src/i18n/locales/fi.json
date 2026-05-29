@@ -1,0 +1,15 @@
+{
+  "products": {
+    "title": "Tuotteet",
+    "loading": "Ladataan tuotteita...",
+    "error": "Tuotteita ei voitu ladata",
+    "retry": "Yritä uudelleen",
+    "empty": "Tuotteita ei löytynyt",
+    "outOfStock": "Loppuunmyyty",
+    "inStock": "Varastossa",
+    "addToCart": "Lisää ostoskoriin",
+    "description": "Kuvaus",
+    "brand": "Merkki",
+    "reviews": "arvostelua"
+  }
+}
