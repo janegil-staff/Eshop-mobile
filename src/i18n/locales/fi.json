@@ -10,6 +10,44 @@
     "addToCart": "Lisää ostoskoriin",
     "description": "Kuvaus",
     "brand": "Merkki",
-    "reviews": "arvostelua"
+    "reviews": "arvostelua",
+    "unavailable": "Ei saatavilla",
+    "shipsInDays_one": "Toimitus {{count}} päivässä",
+    "shipsInDays_other": "Toimitus {{count}} päivässä"
+  },
+  "tabs": {
+    "home": "Koti",
+    "categories": "Kategoriat",
+    "cart": "Ostoskori"
+  },
+  "cart": {
+    "empty": "Ostoskorisi on tyhjä",
+    "startShopping": "Aloita ostokset",
+    "total": "Yhteensä",
+    "remove": "Poista",
+    "checkout": "Kassalle",
+    "freeShipping": "Ilmainen toimitus"
+  },
+  "checkout": {
+    "title": "Kassa",
+    "shipping": "Toimitusosoite",
+    "address1": "Osoite",
+    "address2": "Osoite 2 (valinnainen)",
+    "zip": "Postinro",
+    "city": "Kaupunki",
+    "country": "Maa",
+    "phone": "Puhelin",
+    "payNow": "Maksa {{total}} kr",
+    "secureNote": "Turvallinen maksu Stripellä",
+    "missingTitle": "Puuttuvia tietoja",
+    "missingBody": "Täytä kaikki pakolliset kentät.",
+    "failedTitle": "Maksu epäonnistui"
+  },
+  "confirmation": {
+    "title": "Kiitos tilauksestasi!",
+    "body": "Maksusi onnistui.",
+    "orderNumber": "Tilausnumero",
+    "shipping": "Saat seurantatiedot toimituksessa.",
+    "continue": "Jatka ostoksia"
   }
 }

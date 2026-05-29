@@ -10,6 +10,44 @@
     "addToCart": "Læg i kurv",
     "description": "Beskrivelse",
     "brand": "Mærke",
-    "reviews": "anmeldelser"
+    "reviews": "anmeldelser",
+    "unavailable": "Udsolgt",
+    "shipsInDays_one": "Sendes om {{count}} dag",
+    "shipsInDays_other": "Sendes om {{count}} dage"
+  },
+  "tabs": {
+    "home": "Hjem",
+    "categories": "Kategorier",
+    "cart": "Kurv"
+  },
+  "cart": {
+    "empty": "Din kurv er tom",
+    "startShopping": "Begynd at handle",
+    "total": "Total",
+    "remove": "Fjern",
+    "checkout": "Til kassen",
+    "freeShipping": "Gratis fragt"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "shipping": "Leveringsadresse",
+    "address1": "Adresse",
+    "address2": "Adresse 2 (valgfrit)",
+    "zip": "Postnr.",
+    "city": "By",
+    "country": "Land",
+    "phone": "Telefon",
+    "payNow": "Betal {{total}} kr",
+    "secureNote": "Sikker betaling med Stripe",
+    "missingTitle": "Manglende oplysninger",
+    "missingBody": "Udfyld venligst alle påkrævede felter.",
+    "failedTitle": "Betaling mislykkedes"
+  },
+  "confirmation": {
+    "title": "Tak for din ordre!",
+    "body": "Din betaling lykkedes.",
+    "orderNumber": "Ordrenummer",
+    "shipping": "Du får tracking ved forsendelse.",
+    "continue": "Fortsæt med at handle"
   }
 }

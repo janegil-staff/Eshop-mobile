@@ -10,6 +10,44 @@
     "addToCart": "Add to cart",
     "description": "Description",
     "brand": "Brand",
-    "reviews": "reviews"
+    "reviews": "reviews",
+    "unavailable": "Unavailable",
+    "shipsInDays_one": "Ships in {{count}} day",
+    "shipsInDays_other": "Ships in {{count}} days"
+  },
+  "tabs": {
+    "home": "Home",
+    "categories": "Categories",
+    "cart": "Cart"
+  },
+  "cart": {
+    "empty": "Your cart is empty",
+    "startShopping": "Start shopping",
+    "total": "Total",
+    "remove": "Remove",
+    "checkout": "Checkout",
+    "freeShipping": "Free shipping"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "shipping": "Shipping address",
+    "address1": "Address",
+    "address2": "Address 2 (optional)",
+    "zip": "ZIP",
+    "city": "City",
+    "country": "Country",
+    "phone": "Phone",
+    "payNow": "Pay {{total}} kr",
+    "secureNote": "Secure payment with Stripe",
+    "missingTitle": "Missing information",
+    "missingBody": "Please fill in all required fields.",
+    "failedTitle": "Payment failed"
+  },
+  "confirmation": {
+    "title": "Thank you for your order!",
+    "body": "Your payment was successful.",
+    "orderNumber": "Order number",
+    "shipping": "You'll get tracking info when it ships.",
+    "continue": "Continue shopping"
   }
 }

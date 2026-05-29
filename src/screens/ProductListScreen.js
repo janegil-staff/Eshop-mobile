@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   View,
   Text,
@@ -11,17 +11,29 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useProducts } from '../hooks/useProducts';
 import { useAuthStore } from '../store/authStore';
-import { colors } from '../theme/colors';
+import { useTheme } from '../theme/ThemeProvider';
+import { type as ty } from '../theme/typography';
+import { getAvailability } from '../utils/availability';
 
-function ProductCard({ product, onPress, t }) {
-  const soldOut = product.countInStock <= 0;
+function tintFor(theme, item, index) {
+  return item.category?.color || theme.tints[index % theme.tints.length];
+}
+
+function ProductCard({ product, index, onPress, t, styles, theme }) {
+  const avail = getAvailability(product, t);
   return (
-    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.8}>
-      <Image
-        source={{ uri: product.image || undefined }}
-        style={styles.cardImage}
-        resizeMode="cover"
-      />
+    <TouchableOpacity style={styles.card} onPress={onPress} activeOpacity={0.85}>
+      <View
+        style={[styles.imageWrap, { backgroundColor: tintFor(theme, product, index) }]}
+      >
+        {!!product.image && (
+          <Image
+            source={{ uri: product.image }}
+            style={styles.cardImage}
+            resizeMode="cover"
+          />
+        )}
+      </View>
       <View style={styles.cardBody}>
         <Text style={styles.cardName} numberOfLines={1}>
           {product.name}
@@ -33,8 +45,11 @@ function ProductCard({ product, onPress, t }) {
         )}
         <View style={styles.cardFooter}>
           <Text style={styles.cardPrice}>{product.price} kr</Text>
-          <Text style={[styles.stock, soldOut && styles.stockOut]}>
-            {soldOut ? t('products.outOfStock') : t('products.inStock')}
+          <Text
+            style={[styles.stock, !avail.available && styles.stockOut]}
+            numberOfLines={1}
+          >
+            {avail.label}
           </Text>
         </View>
       </View>
@@ -44,6 +59,8 @@ function ProductCard({ product, onPress, t }) {
 
 export default function ProductListScreen({ navigation }) {
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const styles = useMemo(() => makeStyles(theme), [theme]);
   const hydrate = useAuthStore((s) => s.hydrate);
   const { data: products, isLoading, isError, refetch, isRefetching } =
     useProducts();
@@ -55,7 +72,7 @@ export default function ProductListScreen({ navigation }) {
   if (isLoading) {
     return (
       <View style={styles.centered}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator size="large" color={theme.primary} />
         <Text style={styles.muted}>{t('products.loading')}</Text>
       </View>
     );
@@ -81,13 +98,14 @@ export default function ProductListScreen({ navigation }) {
       columnWrapperStyle={styles.row}
       onRefresh={refetch}
       refreshing={isRefetching}
-      ListEmptyComponent={
-        <Text style={styles.muted}>{t('products.empty')}</Text>
-      }
-      renderItem={({ item }) => (
+      ListEmptyComponent={<Text style={styles.muted}>{t('products.empty')}</Text>}
+      renderItem={({ item, index }) => (
         <ProductCard
           product={item}
+          index={index}
           t={t}
+          styles={styles}
+          theme={theme}
           onPress={() =>
             navigation.navigate('ProductDetail', { id: item.id || item._id })
           }
@@ -97,45 +115,47 @@ export default function ProductListScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  centered: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: colors.background,
-    padding: 24,
-  },
-  list: { padding: 8, backgroundColor: colors.background },
-  row: { justifyContent: 'space-between' },
-  card: {
-    flex: 1,
-    margin: 6,
-    backgroundColor: colors.surface,
-    borderRadius: 12,
-    overflow: 'hidden',
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  cardImage: { width: '100%', height: 140, backgroundColor: colors.border },
-  cardBody: { padding: 10 },
-  cardName: { fontSize: 14, fontWeight: '600', color: colors.text },
-  cardBrand: { fontSize: 12, color: colors.textMuted, marginTop: 2 },
-  cardFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginTop: 8,
-  },
-  cardPrice: { fontSize: 15, fontWeight: '700', color: colors.price },
-  stock: { fontSize: 11, color: colors.price },
-  stockOut: { color: colors.danger },
-  muted: { color: colors.textMuted, marginTop: 12, textAlign: 'center' },
-  errorText: { color: colors.danger, fontSize: 16, marginBottom: 16 },
-  retryBtn: {
-    backgroundColor: colors.primary,
-    paddingHorizontal: 24,
-    paddingVertical: 10,
-    borderRadius: 8,
-  },
-  retryText: { color: '#fff', fontWeight: '600' },
-});
+const makeStyles = (theme) =>
+  StyleSheet.create({
+    centered: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.background,
+      padding: 24,
+    },
+    list: { padding: 8, backgroundColor: theme.background, flexGrow: 1 },
+    row: { justifyContent: 'space-between' },
+    card: {
+      flex: 1,
+      margin: 6,
+      backgroundColor: theme.surface,
+      borderRadius: 14,
+      overflow: 'hidden',
+      borderWidth: 0.5,
+      borderColor: theme.border,
+    },
+    imageWrap: { width: '100%', height: 130 },
+    cardImage: { width: '100%', height: '100%' },
+    cardBody: { padding: 11 },
+    cardName: { ...ty.title, color: theme.text },
+    cardBrand: { ...ty.label, color: theme.textMuted, marginTop: 2 },
+    cardFooter: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      marginTop: 10,
+    },
+    cardPrice: { ...ty.price, color: theme.price },
+    stock: { ...ty.label, fontSize: 11, color: theme.inStock, flexShrink: 1, textAlign: 'right' },
+    stockOut: { color: theme.outStock },
+    muted: { ...ty.body, color: theme.textMuted, marginTop: 12, textAlign: 'center' },
+    errorText: { ...ty.h2, color: theme.danger, marginBottom: 16 },
+    retryBtn: {
+      backgroundColor: theme.primary,
+      paddingHorizontal: 24,
+      paddingVertical: 10,
+      borderRadius: 8,
+    },
+    retryText: { ...ty.title, color: theme.primaryText },
+  });

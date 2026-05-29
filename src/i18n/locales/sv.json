@@ -10,6 +10,44 @@
     "addToCart": "Lägg i varukorg",
     "description": "Beskrivning",
     "brand": "Märke",
-    "reviews": "recensioner"
+    "reviews": "recensioner",
+    "unavailable": "Slut",
+    "shipsInDays_one": "Skickas om {{count}} dag",
+    "shipsInDays_other": "Skickas om {{count}} dagar"
+  },
+  "tabs": {
+    "home": "Hem",
+    "categories": "Kategorier",
+    "cart": "Varukorg"
+  },
+  "cart": {
+    "empty": "Din varukorg är tom",
+    "startShopping": "Börja handla",
+    "total": "Totalt",
+    "remove": "Ta bort",
+    "checkout": "Till kassan",
+    "freeShipping": "Fri frakt"
+  },
+  "checkout": {
+    "title": "Kassa",
+    "shipping": "Leveransadress",
+    "address1": "Adress",
+    "address2": "Adress 2 (valfritt)",
+    "zip": "Postnr",
+    "city": "Stad",
+    "country": "Land",
+    "phone": "Telefon",
+    "payNow": "Betala {{total}} kr",
+    "secureNote": "Säker betalning med Stripe",
+    "missingTitle": "Saknad information",
+    "missingBody": "Fyll i alla obligatoriska fält.",
+    "failedTitle": "Betalning misslyckades"
+  },
+  "confirmation": {
+    "title": "Tack för din beställning!",
+    "body": "Din betalning lyckades.",
+    "orderNumber": "Ordernummer",
+    "shipping": "Du får spårning vid leverans.",
+    "continue": "Fortsätt handla"
   }
 }

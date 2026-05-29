@@ -10,6 +10,44 @@
     "addToCart": "In winkelwagen",
     "description": "Beschrijving",
     "brand": "Merk",
-    "reviews": "beoordelingen"
+    "reviews": "beoordelingen",
+    "unavailable": "Niet beschikbaar",
+    "shipsInDays_one": "Verzonden in {{count}} dag",
+    "shipsInDays_other": "Verzonden in {{count}} dagen"
+  },
+  "tabs": {
+    "home": "Home",
+    "categories": "Categorieën",
+    "cart": "Winkelwagen"
+  },
+  "cart": {
+    "empty": "Je winkelwagen is leeg",
+    "startShopping": "Begin met winkelen",
+    "total": "Totaal",
+    "remove": "Verwijderen",
+    "checkout": "Afrekenen",
+    "freeShipping": "Gratis verzending"
+  },
+  "checkout": {
+    "title": "Afrekenen",
+    "shipping": "Verzendadres",
+    "address1": "Adres",
+    "address2": "Adres 2 (optioneel)",
+    "zip": "Postcode",
+    "city": "Plaats",
+    "country": "Land",
+    "phone": "Telefoon",
+    "payNow": "Betaal {{total}} kr",
+    "secureNote": "Veilig betalen met Stripe",
+    "missingTitle": "Ontbrekende gegevens",
+    "missingBody": "Vul alle verplichte velden in.",
+    "failedTitle": "Betaling mislukt"
+  },
+  "confirmation": {
+    "title": "Bedankt voor je bestelling!",
+    "body": "Je betaling is gelukt.",
+    "orderNumber": "Bestelnummer",
+    "shipping": "Je ontvangt trackinginfo bij verzending.",
+    "continue": "Verder winkelen"
   }
 }

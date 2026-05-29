@@ -10,6 +10,44 @@
     "addToCart": "Aggiungi al carrello",
     "description": "Descrizione",
     "brand": "Marca",
-    "reviews": "recensioni"
+    "reviews": "recensioni",
+    "unavailable": "Non disponibile",
+    "shipsInDays_one": "Spedito in {{count}} giorno",
+    "shipsInDays_other": "Spedito in {{count}} giorni"
+  },
+  "tabs": {
+    "home": "Home",
+    "categories": "Categorie",
+    "cart": "Carrello"
+  },
+  "cart": {
+    "empty": "Il carrello è vuoto",
+    "startShopping": "Inizia a fare acquisti",
+    "total": "Totale",
+    "remove": "Rimuovi",
+    "checkout": "Procedi",
+    "freeShipping": "Spedizione gratuita"
+  },
+  "checkout": {
+    "title": "Pagamento",
+    "shipping": "Indirizzo di spedizione",
+    "address1": "Indirizzo",
+    "address2": "Indirizzo 2 (facoltativo)",
+    "zip": "CAP",
+    "city": "Città",
+    "country": "Paese",
+    "phone": "Telefono",
+    "payNow": "Paga {{total}} kr",
+    "secureNote": "Pagamento sicuro con Stripe",
+    "missingTitle": "Informazioni mancanti",
+    "missingBody": "Compila tutti i campi obbligatori.",
+    "failedTitle": "Pagamento non riuscito"
+  },
+  "confirmation": {
+    "title": "Grazie per il tuo ordine!",
+    "body": "Il pagamento è andato a buon fine.",
+    "orderNumber": "Numero ordine",
+    "shipping": "Riceverai il tracking alla spedizione.",
+    "continue": "Continua lo shopping"
   }
 }

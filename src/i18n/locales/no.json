@@ -10,6 +10,44 @@
     "addToCart": "Legg i handlekurv",
     "description": "Beskrivelse",
     "brand": "Merke",
-    "reviews": "anmeldelser"
+    "reviews": "anmeldelser",
+    "unavailable": "Utsolgt",
+    "shipsInDays_one": "Sendes om {{count}} dag",
+    "shipsInDays_other": "Sendes om {{count}} dager"
+  },
+  "tabs": {
+    "home": "Hjem",
+    "categories": "Kategorier",
+    "cart": "Handlekurv"
+  },
+  "cart": {
+    "empty": "Handlekurven er tom",
+    "startShopping": "Start å handle",
+    "total": "Totalt",
+    "remove": "Fjern",
+    "checkout": "Til kassen",
+    "freeShipping": "Gratis frakt"
+  },
+  "checkout": {
+    "title": "Kasse",
+    "shipping": "Leveringsadresse",
+    "address1": "Adresse",
+    "address2": "Adresse 2 (valgfritt)",
+    "zip": "Postnr.",
+    "city": "By",
+    "country": "Land",
+    "phone": "Telefon",
+    "payNow": "Betal {{total}} kr",
+    "secureNote": "Sikker betaling med Stripe",
+    "missingTitle": "Mangler informasjon",
+    "missingBody": "Vennligst fyll ut alle påkrevde felt.",
+    "failedTitle": "Betaling mislyktes"
+  },
+  "confirmation": {
+    "title": "Takk for bestillingen!",
+    "body": "Betalingen er gjennomført.",
+    "orderNumber": "Ordrenummer",
+    "shipping": "Du får sporingsinfo når varen sendes.",
+    "continue": "Fortsett å handle"
   }
 }

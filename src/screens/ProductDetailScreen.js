@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import {
   View,
   Text,
@@ -8,22 +9,28 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useTranslation } from 'react-i18next';
+import * as Haptics from 'expo-haptics';
 import { useProduct } from '../hooks/useProducts';
-import { colors } from '../theme/colors';
+import { useCartStore } from '../store/cartStore';
+import { useTheme } from '../theme/ThemeProvider';
+import { type as ty } from '../theme/typography';
+import { getAvailability } from '../utils/availability';
 
 export default function ProductDetailScreen({ route }) {
   const { id } = route.params;
   const { t } = useTranslation();
+  const { theme } = useTheme();
+  const styles = useMemo(() => makeStyles(theme), [theme]);
+  const addItem = useCartStore((s) => s.addItem);
   const { data: product, isLoading, isError } = useProduct(id);
 
   if (isLoading) {
     return (
       <View style={styles.centered}>
-        <ActivityIndicator size="large" color={colors.primary} />
+        <ActivityIndicator size="large" color={theme.primary} />
       </View>
     );
   }
-
   if (isError || !product) {
     return (
       <View style={styles.centered}>
@@ -32,15 +39,22 @@ export default function ProductDetailScreen({ route }) {
     );
   }
 
-  const soldOut = product.countInStock <= 0;
+  const avail = getAvailability(product, t);
+  const soldOut = !avail.available;
+  const tint = product.category?.color || theme.surfaceAlt;
+
+  const onAdd = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    addItem(product, 1);
+  };
 
   return (
     <ScrollView style={styles.container}>
-      <Image
-        source={{ uri: product.image || undefined }}
-        style={styles.image}
-        resizeMode="cover"
-      />
+      <View style={[styles.imageWrap, { backgroundColor: tint }]}>
+        {!!product.image && (
+          <Image source={{ uri: product.image }} style={styles.image} resizeMode="cover" />
+        )}
+      </View>
       <View style={styles.body}>
         <Text style={styles.name}>{product.name}</Text>
         {!!product.brand && (
@@ -49,16 +63,13 @@ export default function ProductDetailScreen({ route }) {
           </Text>
         )}
         <Text style={styles.price}>{product.price} kr</Text>
-
         <Text style={[styles.stock, soldOut && styles.stockOut]}>
-          {soldOut ? t('products.outOfStock') : t('products.inStock')}
+          {avail.label}
         </Text>
 
         {!!product.description && (
           <>
-            <Text style={styles.sectionTitle}>
-              {t('products.description')}
-            </Text>
+            <Text style={styles.sectionTitle}>{t('products.description')}</Text>
             <Text style={styles.description}>{product.description}</Text>
           </>
         )}
@@ -66,6 +77,8 @@ export default function ProductDetailScreen({ route }) {
         <TouchableOpacity
           style={[styles.cartBtn, soldOut && styles.cartBtnDisabled]}
           disabled={soldOut}
+          onPress={onAdd}
+          activeOpacity={0.85}
         >
           <Text style={styles.cartBtnText}>{t('products.addToCart')}</Text>
         </TouchableOpacity>
@@ -74,36 +87,32 @@ export default function ProductDetailScreen({ route }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.surface },
-  centered: { flex: 1, alignItems: 'center', justifyContent: 'center' },
-  image: { width: '100%', height: 320, backgroundColor: colors.border },
-  body: { padding: 16 },
-  name: { fontSize: 22, fontWeight: '700', color: colors.text },
-  brand: { fontSize: 14, color: colors.textMuted, marginTop: 4 },
-  price: {
-    fontSize: 24,
-    fontWeight: '800',
-    color: colors.price,
-    marginTop: 12,
-  },
-  stock: { fontSize: 14, color: colors.price, marginTop: 6 },
-  stockOut: { color: colors.danger },
-  sectionTitle: {
-    fontSize: 16,
-    fontWeight: '700',
-    color: colors.text,
-    marginTop: 20,
-    marginBottom: 6,
-  },
-  description: { fontSize: 15, lineHeight: 22, color: colors.text },
-  cartBtn: {
-    backgroundColor: colors.primary,
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 28,
-  },
-  cartBtnDisabled: { backgroundColor: colors.border },
-  cartBtnText: { color: '#fff', fontSize: 16, fontWeight: '700' },
-});
+const makeStyles = (theme) =>
+  StyleSheet.create({
+    container: { flex: 1, backgroundColor: theme.background },
+    centered: {
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
+      backgroundColor: theme.background,
+    },
+    imageWrap: { width: '100%', height: 320 },
+    image: { width: '100%', height: '100%' },
+    body: { padding: 16 },
+    name: { ...ty.h1, color: theme.text },
+    brand: { ...ty.body, color: theme.textMuted, marginTop: 4 },
+    price: { ...ty.priceLarge, color: theme.price, marginTop: 12 },
+    stock: { ...ty.body, fontSize: 14, color: theme.inStock, marginTop: 6 },
+    stockOut: { color: theme.outStock },
+    sectionTitle: { ...ty.h2, color: theme.text, marginTop: 20, marginBottom: 6 },
+    description: { ...ty.body, color: theme.text },
+    cartBtn: {
+      backgroundColor: theme.primary,
+      paddingVertical: 15,
+      borderRadius: 10,
+      alignItems: 'center',
+      marginTop: 28,
+    },
+    cartBtnDisabled: { backgroundColor: theme.border },
+    cartBtnText: { ...ty.title, fontSize: 16, color: theme.primaryText },
+  });
